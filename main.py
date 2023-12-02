@@ -32,5 +32,11 @@ def create_todo(request: CreateTodoRequest):
 
 
 @app.get("/todos")
-def list_todos():
+def list_todos() -> List[Todo]:
     return list(todos.values())
+
+
+@app.get("/todos/{id}")
+def get_todo(id: uuid.UUID) -> Todo:
+    print(id)
+    return todos[id]
