@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from typing import Dict
+from typing import Dict, List
 import uuid
 from pydantic import BaseModel
 
@@ -29,3 +29,8 @@ def create_todo(request: CreateTodoRequest):
     todo = Todo(id=id, name=request.name)
     todos[id] = todo
     return todo
+
+
+@app.get("/todos")
+def list_todos():
+    return list(todos.values())
